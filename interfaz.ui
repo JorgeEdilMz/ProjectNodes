@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>736</width>
+    <height>550</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Inter</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="sizeConstraint">
+     <enum>QLayout::SetMaximumSize</enum>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="container">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>390</y>
+         <width>491</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Inter</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTabWidget{
+border-style: solid;
+border-width: 0px;
+border-color: rgba(255, 220, 94, 50);
+backgroud-color: rgb(0, 0, 0)
+border-radius: 5px;
+}</string>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="tabOrigin">
+        <property name="styleSheet">
+         <string notr="true">QWidget{
+border-style: solid;
+border-width: 0px;
+border-color: rgba(255, 220, 94, 50);
+color: rgb(255, 151, 47);
+border-radius: 5px;
+}</string>
+        </property>
+        <attribute name="icon">
+         <iconset>
+          <normaloff>../IconosColores/crosshair1.svg</normaloff>../IconosColores/crosshair1.svg</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Punto Salida</string>
+        </attribute>
+        <widget class="QListWidget" name="listOrigin">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>1</y>
+           <width>491</width>
+           <height>181</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Inter</family>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Item 1</string>
+          </property>
+         </item>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_Destination">
+        <attribute name="icon">
+         <iconset>
+          <normaloff>../IconosColores/map-pin.svg</normaloff>../IconosColores/map-pin.svg</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Destino</string>
+        </attribute>
+        <widget class="QListWidget" name="listDestination">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Inter</family>
+          </font>
+         </property>
+         <item>
+          <property name="text">
+           <string>Item 2</string>
+          </property>
+         </item>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="frameSide">
+       <property name="geometry">
+        <rect>
+         <x>-10</x>
+         <y>4</y>
+         <width>250</width>
+         <height>531</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Impact</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QPushButton" name="btn_menu">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>231</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>10</pointsize>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+border-style: solid;
+border-width: 0px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Indicaciones para llegar</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../iconos/align-justify.svg</normaloff>../iconos/align-justify.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_inicio">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>70</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+border-style: solid;
+border-width: 0px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../IconosColores/crosshair1.svg</normaloff>../IconosColores/crosshair1.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboOrigin">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>70</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Inter</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox{
+	border-style: solid;
+border-width: 1px;
+border-color: rgb(0, 51, 102);
+background-color: #D9D9D9;
+color: rgb(0,0,0);
+border-radius: 5px;
+}</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Barrio1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Barrio2</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="btn_inicio_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>100</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+border-style: solid;
+border-width: 0px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../IconosColores/more-vertical.svg</normaloff>../IconosColores/more-vertical.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_inicio_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>130</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+border-style: solid;
+border-width: 0px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../IconosColores/map-pin.svg</normaloff>../IconosColores/map-pin.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboDestination">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>130</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Inter</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox{
+	border-style: solid;
+border-width: 1px;
+border-color: rgb(0, 51, 102);
+background-color: #D9D9D9;
+color: rgb(0,0,0);
+border-radius: 5px;
+}</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Barrio1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Barrio2</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="btn_CalculateRoute">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>180</y>
+          <width>111</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border-style: solid;
+border-width: 1px;
+border-color: rgb(0, 51, 102);
+background-color: #55aaff;
+color: rgb(255, 255, 255);
+border-radius: 5px;
+}
+
+QPushButton:hover{
+border-style: solid;
+border-width: 1px;
+border-color: rgb(0, 51, 102);
+background-color: rgb(0, 0, 255);
+color: rgb(255, 255, 255);
+border-radius: 5px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Calcular ruta</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_inicio_4">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>230</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+border-style: solid;
+border-width: 0px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../IconosColores/git-branch.svg</normaloff>../IconosColores/git-branch.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>230</y>
+          <width>43</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;Rutas&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>210</y>
+          <width>241</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QToolBox" name="toolSafeRoute">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>280</y>
+          <width>221</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Inter</family>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Hola&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget{
+border-style: solid;
+color: rgb(0,100,0);
+border-radius: 5px;
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="pageSafeRoute">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>221</width>
+           <height>56</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget{
+border-style: solid;
+border-width: 1px;
+border-color: rgb(0, 51, 102);
+background-color: rgba(0, 255, 127, 44);
+color: rgb(0,100,0);
+border-radius: 5px;
+}</string>
+         </property>
+         <attribute name="icon">
+          <iconset>
+           <normaloff>../iconos/check.svg</normaloff>../iconos/check.svg</iconset>
+         </attribute>
+         <attribute name="label">
+          <string>Ruta Segura</string>
+         </attribute>
+         <widget class="QLabel" name="lbSafe">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>201</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QToolBox" name="ToolShorestRoute">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>380</y>
+          <width>221</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Inter</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget{
+border-style: solid;
+border-width: 0px;
+border-color: rgba(255, 220, 94, 50);
+color: rgb(255, 151, 47);
+border-radius: 5px;
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="pageShortRoute">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>221</width>
+           <height>56</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget{
+border-style: solid;
+border-width: 0px;
+border-color: rgb(0, 51, 102);
+background-color: rgba(255, 220, 94, 50);
+color: rgb(0,100,0);
+border-radius: 5px;
+}</string>
+         </property>
+         <attribute name="icon">
+          <iconset>
+           <normaloff>../IconosColores/git-commit.svg</normaloff>../IconosColores/git-commit.svg</iconset>
+         </attribute>
+         <attribute name="label">
+          <string>Ruta más corta</string>
+         </attribute>
+         <widget class="QLabel" name="lbShort">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>201</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="frame">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>0</y>
+         <width>501</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(170, 255, 255);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="lbImagen">
+        <property name="geometry">
+         <rect>
+          <x>39</x>
+          <y>29</y>
+          <width>421</width>
+          <height>341</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
