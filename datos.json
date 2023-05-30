@@ -1,0 +1,185 @@
+{
+  "lugares": [
+    {
+      "nombre": "SANTA INES"
+    },
+    {
+      "nombre": "MESOPOTAMIA"
+    },
+    {
+      "nombre": "GLORIETA GOBERNADOR"
+    },
+    {
+      "nombre": "20 JULIO"
+    },
+    {
+      "nombre": "CENTRO"
+    },
+    {
+      "nombre": "PARQUE RODEO"
+    },
+    {
+      "nombre": "PATRIOTAS"
+    },
+    {
+      "nombre": "FUENTE"
+    },
+    {
+      "nombre": "COJINES ZAQUE"
+    },
+    {
+      "nombre": "JORDAN"
+    },
+    {
+      "nombre": "PARAISO"
+    },
+    {
+      "nombre": "BOSQUE"
+    },
+    {
+      "nombre": "MULTIPARQUE"
+    },
+    {
+      "nombre": "LIBERTADOR"
+    }
+  ],
+  "conexiones": [
+    {
+      "origen": "SANTA INES",
+      "destino": "MESOPOTAMIA",
+      "incidentes": {
+        "Robo": 5
+      }
+    },
+    {
+      "origen": "SANTA INES",
+      "destino": "GLORIETA GOBERNADOR",
+      "incidentes": {
+        "Robo": 5
+      }
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "MESOPOTAMIA",
+      "incidentes": {
+        "Homicidio": 9,
+        "Robo": 5
+      }
+    },
+    {
+      "origen": "20 JULIO",
+      "destino": "MESOPOTAMIA",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "20 JULIO",
+      "destino": "CENTRO",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "20 JULIO",
+      "destino": "FUENTE",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "COJINES ZAQUE",
+      "destino": "CENTRO",
+      "incidentes": {
+        "Homicidio": 9
+      }
+    },
+    {
+      "origen": "COJINES ZAQUE",
+      "destino": "PARAISO",
+      "incidentes": {
+        "Homicidio": 9
+      }
+    },
+    {
+      "origen": "COJINES ZAQUE",
+      "destino": "FUENTE",
+      "incidentes": {
+        "Homicidio": 9
+      }
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "BOSQUE",
+      "incidentes": {
+        "Homicidio": 9,
+        "Robo": 5
+      }
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "JORDAN",
+      "incidentes": {
+        "Homicidio": 9,
+        "Robo": 5
+      }
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "PARQUE RODEO",
+      "incidentes": {
+        "Homicidio": 9,
+        "Robo": 5
+      }
+    },
+    {
+      "origen": "PATRIOTAS",
+      "destino": "GLORIETA GOBERNADOR",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "PATRIOTAS",
+      "destino": "PARQUE RODEO",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "PATRIOTAS",
+      "destino": "JORDAN",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "PATRIOTAS",
+      "destino": "MULTIPARQUE",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "LIBERTADOR",
+      "destino": "PARAISO",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "LIBERTADOR",
+      "destino": "BOSQUE",
+      "incidentes": {
+        "Residencial": 1
+      }
+    },
+    {
+      "origen": "LIBERTADOR",
+      "destino": "MULTIPARQUE",
+      "incidentes": {
+        "Residencial": 1
+      }
+    }
+  ]
+}

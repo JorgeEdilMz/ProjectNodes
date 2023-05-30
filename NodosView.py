@@ -4,6 +4,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QComboBox,QFrame
 import networkx as nx
 import matplotlib.pyplot as plt
+import json
 
 class NodosView(QMainWindow):
 
@@ -11,7 +12,44 @@ class NodosView(QMainWindow):
         super().__init__()
         uic.loadUi("interfaz.ui", self)
         Safe_Graph = nx.DiGraph()
-        nodos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "Z"]
+
+        json_file = "datos.json"
+
+        with open(json_file) as file:
+            data = json.load(file)
+
+        def calculateWeight(array):
+            names = []
+            peso = 0
+            #obtenemos nombres de los incidentes
+            for name in array:
+                names.append(name)
+            #se suma el peso
+            for i in range(len(names)):
+                peso += array[names[i]]
+            
+            return peso
+        def add_Connection(Graph, node1, node2, wei=1, di=False):
+            Graph.add_edge(node1, node2, weight=wei)
+            if not di:
+                Graph.add_edge(node2, node1, weight=wei)
+
+        nodos = []
+        # Crear los nodos en base a la información del archivo JSON
+        for barrio in data["lugares"]:
+            nombre = barrio["nombre"]
+            Safe_Graph.add_node(nombre, color="blue")
+            nodos.append(nombre)
+
+        # Crear las conexiones en base a la información del archivo JSON
+        for conexion in data["conexiones"]:
+            origen = conexion["origen"]
+            destino = conexion["destino"]
+            peso = calculateWeight(conexion["incidentes"])
+
+            #se crea la conexion
+            add_Connection(Safe_Graph, origen, destino, peso)
+
         self.comboOrigin = self.findChild(QComboBox, "comboOrigin")
         self.comboOrigin.clear()
         self.comboOrigin.addItems(nodos)
@@ -20,32 +58,6 @@ class NodosView(QMainWindow):
         self.comboDestination.clear()
         self.comboDestination.addItems(nodos)
 
-        for nodo in nodos:
-            Safe_Graph.add_node(nodo, color="blue")
-
-        def add_Connection(Graph, node1, node2, wei=1, di=False):
-            Graph.add_edge(node1, node2, weight=wei)
-            if not di:
-                Graph.add_edge(node2, node1, weight=wei)
-
-        add_Connection(Safe_Graph, nodos[0], nodos[2], 1)
-        add_Connection(Safe_Graph, nodos[11], nodos[2], 2)
-        add_Connection(Safe_Graph, nodos[3], nodos[4])
-        add_Connection(Safe_Graph, nodos[3], nodos[5], 4)
-        add_Connection(Safe_Graph, nodos[4], nodos[5])
-        add_Connection(Safe_Graph, nodos[2], nodos[6], 3)
-        add_Connection(Safe_Graph, nodos[6], nodos[7], 10)
-        add_Connection(Safe_Graph, nodos[7], nodos[8], 2)
-        add_Connection(Safe_Graph, nodos[7], nodos[9], 6)
-        add_Connection(Safe_Graph, nodos[7], nodos[0], 20)
-        add_Connection(Safe_Graph, nodos[9], nodos[10], 4)
-        add_Connection(Safe_Graph, nodos[6], nodos[5], 2)
-        add_Connection(Safe_Graph, nodos[6], nodos[4], 2)
-        add_Connection(Safe_Graph, nodos[9], nodos[3], 2)
-        add_Connection(Safe_Graph, nodos[7], nodos[1], 1)
-        add_Connection(Safe_Graph, nodos[11], nodos[1], 1)
-       
-
         self.Safe_Graph = Safe_Graph
         self.frame = self.findChild(QFrame, "frameSide")
         self.btn_CalculateRoute = self.frame.findChild(QPushButton, "btn_CalculateRoute")
@@ -53,18 +65,19 @@ class NodosView(QMainWindow):
         self.lbSafe = self.findChild(QLabel, "lbSafe")
         self.lbShort = self.findChild(QLabel, "lbShort")
 
+        self.lbImagen = self.findChild(QLabel, "lbImagen")
+        self.lbImagen.setScaledContents(True)
+
     def drawGraph(self):
-        pos = nx.layout.planar_layout(self.Safe_Graph)
+        pos = nx.layout.fruchterman_reingold_layout(self.Safe_Graph)
         nx.draw_networkx(self.Safe_Graph, pos)
-        labels = nx.get_edge_attributes(self.Safe_Graph, 'weight')
-        nx.draw_networkx_edge_labels(self.Safe_Graph, pos, edge_labels=labels)
+        #labels = nx.get_edge_attributes(self.Safe_Graph, 'weight')
+        #nx.draw_networkx_edge_labels(self.Safe_Graph, pos, edge_labels=labels)
         plt.title("Looking for the Safe Way to Walk Graph")
         plt.savefig("graph.png")     
 
     def refreshFrame(self):
-        self.lbImagen.setScaledContents(True)
-        self.lbImagen = self.findChild(QLabel, "lbImagen")
-        pixmap = QPixmap('graph.png')  
+        pixmap = QPixmap('graph.png')
         self.lbImagen.setPixmap(pixmap)
         self.frame.update()
 
@@ -89,7 +102,8 @@ class NodosView(QMainWindow):
 
         danger_colors = [color_map.get(node) for node in self.Safe_Graph.nodes()]
 
-        pos = nx.layout.planar_layout(self.Safe_Graph)
+        pos = nx.layout.fruchterman_reingold_layout(self.Safe_Graph)
+        plt.close('all')
         nx.draw_networkx(self.Safe_Graph,pos, node_color=danger_colors)
         labels = nx.get_edge_attributes(self.Safe_Graph, 'weight')
         nx.draw_networkx_edge_labels(self.Safe_Graph,pos, edge_labels=labels)
