@@ -82,11 +82,11 @@ class NodosView(QMainWindow):
             if origen == lugar or destino == lugar:
                 if 'incidentes' in conexion:
                     if 'Homicidio' in conexion['incidentes']:
-                        homicidios += conexion['incidentes']['Homicidio']
+                        homicidios = conexion['incidentes']['Homicidio']
                     if 'Robo' in conexion['incidentes']:
-                        robos += conexion['incidentes']['Robo']
+                        robos = conexion['incidentes']['Robo']
                     if 'Residencial' in conexion['incidentes']:
-                        residencial += conexion['incidentes']['Residencial']
+                        residencial = conexion['incidentes']['Residencial']
 
         return homicidios, robos, residencial
 
@@ -139,16 +139,16 @@ class NodosView(QMainWindow):
     def uploadListOrigin(self,source):
         homicidios, robos, residencial = self.obtener_incidentes(source)
         self.listOrigin.clear()
-        self.listOrigin.addItem(f"Número de homicidios={homicidios}")
-        self.listOrigin.addItem(f"Número de robos={robos}")
-        self.listOrigin.addItem(f"Número urto residencial={residencial}")
+        self.listOrigin.addItem(f"Incidente: Homicidio = {homicidios}")
+        self.listOrigin.addItem(f"Incidente: Robo = {robos}")
+        self.listOrigin.addItem(f"Incidente: Hurto Residencial = {residencial}")
     
     def uploadListDestination(self,target):
         homicidios, robos, residencial = self.obtener_incidentes(target)
         self.listDestination.clear()
-        self.listDestination.addItem(f"Número de homicidios={homicidios}")
-        self.listDestination.addItem(f"Número de robos={robos}")
-        self.listDestination.addItem(f"Número urto residencial={residencial}")
+        self.listDestination.addItem(f"Incidente: Homicidio = {homicidios}")
+        self.listDestination.addItem(f"Incidente: Robo = {robos}")
+        self.listDestination.addItem(f"Incidente: Hurto residencial = {residencial}")
 
 
 if __name__ == '__main__':
