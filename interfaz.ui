@@ -94,7 +94,7 @@ border-radius: 5px;
 }</string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabOrigin">
         <property name="styleSheet">
@@ -130,11 +130,6 @@ border-radius: 5px;
          <property name="styleSheet">
           <string notr="true">color: rgb(0, 0, 0);</string>
          </property>
-         <item>
-          <property name="text">
-           <string>Item 1</string>
-          </property>
-         </item>
         </widget>
        </widget>
        <widget class="QWidget" name="tab_Destination">
@@ -159,11 +154,6 @@ border-radius: 5px;
            <family>Inter</family>
           </font>
          </property>
-         <item>
-          <property name="text">
-           <string>Item 2</string>
-          </property>
-         </item>
         </widget>
        </widget>
       </widget>
