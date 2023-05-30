@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QComboBox,QFrame,QTextEdit,QListWidget
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QComboBox, QFrame, QTextEdit, QListWidget
 import networkx as nx
 import matplotlib.pyplot as plt
 import json
@@ -14,7 +14,7 @@ class NodosView(QMainWindow):
         Safe_Graph = nx.DiGraph()
 
         with open("datos.json") as file:
-            data = json.load(file)
+            self.data = json.load(file)
 
         def calculateWeight(array):
             names = []
@@ -34,13 +34,13 @@ class NodosView(QMainWindow):
 
         nodos = []
         # Crear los nodos en base a la información del archivo JSON
-        for barrio in data["lugares"]:
+        for barrio in self.data["lugares"]:
             nombre = barrio["nombre"]
             Safe_Graph.add_node(nombre, color="blue")
             nodos.append(nombre)
 
         # Crear las conexiones en base a la información del archivo JSON
-        for conexion in data["conexiones"]:
+        for conexion in self.data["conexiones"]:
             origen = conexion["origen"]
             destino = conexion["destino"]
             peso = calculateWeight(conexion["incidentes"])
@@ -64,29 +64,31 @@ class NodosView(QMainWindow):
         self.lbSafes.setReadOnly(True) 
         self.lbShort = self.findChild(QTextEdit, "lbShort")
         self.lbShort.setReadOnly(True) 
-        self.listOrigin = self.findChild(QListWidget,"listOrigin")
-        self.listDestination = self.findChild(QListWidget,"listDestination")
+        self.listOrigin = self.findChild(QListWidget, "listOrigin")
+        self.listDestination = self.findChild(QListWidget, "listDestination")
 
         self.lbImagen = self.findChild(QLabel, "lbImagen")
         self.lbImagen.setScaledContents(True)
 
-    def obtener_incidentes(self, lugar):
-        incidentes = {
-            "Robo": 0,
-            "Homicidio": 0,
-            "Residencial": 0
-        }
-    
-        for conexion in self.json_file["conexiones"]:
-            if conexion["origen"] == lugar:
-                incidentes_lugar = conexion["incidentes"]
-                if "Robo" in incidentes_lugar:
-                    incidentes["Robo"] += incidentes_lugar["Robo"]
-                if "Homicidio" in incidentes_lugar:
-                    incidentes["Homicidio"] += incidentes_lugar["Homicidio"]
-                if "Residencial" in incidentes_lugar:
-                    incidentes["Residencial"] += incidentes_lugar["Residencial"] 
-        return incidentes
+    def obtener_incidentes(self,lugar):
+        homicidios = 0
+        robos = 0
+        residencial = 0
+
+        for conexion in self.data['conexiones']:
+            origen = conexion['origen']
+            destino = conexion['destino']
+
+            if origen == lugar or destino == lugar:
+                if 'incidentes' in conexion:
+                    if 'Homicidio' in conexion['incidentes']:
+                        homicidios += conexion['incidentes']['Homicidio']
+                    if 'Robo' in conexion['incidentes']:
+                        robos += conexion['incidentes']['Robo']
+                    if 'Residencial' in conexion['incidentes']:
+                        residencial += conexion['incidentes']['Residencial']
+
+        return homicidios, robos, residencial
 
     def drawGraph(self):
         pos = nx.layout.fruchterman_reingold_layout(self.Safe_Graph)
@@ -101,7 +103,7 @@ class NodosView(QMainWindow):
         self.lbImagen.setPixmap(pixmap)
         self.frame.update()
 
-    def isKeyList(self,key, lista):
+    def isKeyList(self, key, lista):
         for i in lista:
             if i == key:
                 return True
@@ -109,26 +111,45 @@ class NodosView(QMainWindow):
  
     def calculateRoute(self):
         source = self.comboOrigin.currentText()  
+        self.uploadListOrigin(source)
+
         target = self.comboDestination.currentText()
-        safe_path = nx.dijkstra_path(self.Safe_Graph, source=source, target=target,weight='weight')
+        self.uploadListDestination(target)
+        
+        safe_path = nx.dijkstra_path(self.Safe_Graph, source=source, target=target, weight='weight')
         self.lbSafes.setText(' -> '.join(safe_path))
-        short_path = nx.dijkstra_path(self.Safe_Graph, source=source, target=target,weight=True)
+        short_path = nx.dijkstra_path(self.Safe_Graph, source=source, target=target, weight=True)
         self.lbShort.setText(' -> '.join(short_path))
         color_map = nx.get_node_attributes(self.Safe_Graph, "color")
 
         for key in color_map:
-            if self.isKeyList(key,safe_path):
+            if self.isKeyList(key, safe_path):
                 color_map[key] = "green"
 
         danger_colors = [color_map.get(node) for node in self.Safe_Graph.nodes()]
 
         pos = nx.layout.fruchterman_reingold_layout(self.Safe_Graph)
         plt.close('all')
-        nx.draw_networkx(self.Safe_Graph,pos, node_color=danger_colors)
+        nx.draw_networkx(self.Safe_Graph, pos, node_color=danger_colors)
         labels = nx.get_edge_attributes(self.Safe_Graph, 'weight')
-        nx.draw_networkx_edge_labels(self.Safe_Graph,pos, edge_labels=labels)
+        nx.draw_networkx_edge_labels(self.Safe_Graph, pos, edge_labels=labels)
         plt.savefig("graph.png") 
         self.refreshFrame()
+    
+    def uploadListOrigin(self,source):
+        homicidios, robos, residencial = self.obtener_incidentes(source)
+        self.listOrigin.clear()
+        self.listOrigin.addItem(f"Número de homicidios={homicidios}")
+        self.listOrigin.addItem(f"Número de robos={robos}")
+        self.listOrigin.addItem(f"Número urto residencial={residencial}")
+    
+    def uploadListDestination(self,target):
+        homicidios, robos, residencial = self.obtener_incidentes(target)
+        self.listDestination.clear()
+        self.listDestination.addItem(f"Número de homicidios={homicidios}")
+        self.listDestination.addItem(f"Número de robos={robos}")
+        self.listDestination.addItem(f"Número urto residencial={residencial}")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
