@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QComboBox,QFrame
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QComboBox,QFrame,QTextEdit,QListWidget
 import networkx as nx
 import matplotlib.pyplot as plt
 import json
@@ -13,9 +13,7 @@ class NodosView(QMainWindow):
         uic.loadUi("interfaz.ui", self)
         Safe_Graph = nx.DiGraph()
 
-        json_file = "datos.json"
-
-        with open(json_file) as file:
+        with open("datos.json") as file:
             data = json.load(file)
 
         def calculateWeight(array):
@@ -62,11 +60,33 @@ class NodosView(QMainWindow):
         self.frame = self.findChild(QFrame, "frameSide")
         self.btn_CalculateRoute = self.frame.findChild(QPushButton, "btn_CalculateRoute")
         self.btn_CalculateRoute.clicked.connect(self.calculateRoute) 
-        self.lbSafe = self.findChild(QLabel, "lbSafe")
-        self.lbShort = self.findChild(QLabel, "lbShort")
+        self.lbSafes = self.findChild(QTextEdit, "lbSafes")
+        self.lbSafes.setReadOnly(True) 
+        self.lbShort = self.findChild(QTextEdit, "lbShort")
+        self.lbShort.setReadOnly(True) 
+        self.listOrigin = self.findChild(QListWidget,"listOrigin")
+        self.listDestination = self.findChild(QListWidget,"listDestination")
 
         self.lbImagen = self.findChild(QLabel, "lbImagen")
         self.lbImagen.setScaledContents(True)
+
+    def obtener_incidentes(self, lugar):
+        incidentes = {
+            "Robo": 0,
+            "Homicidio": 0,
+            "Residencial": 0
+        }
+    
+        for conexion in self.json_file["conexiones"]:
+            if conexion["origen"] == lugar:
+                incidentes_lugar = conexion["incidentes"]
+                if "Robo" in incidentes_lugar:
+                    incidentes["Robo"] += incidentes_lugar["Robo"]
+                if "Homicidio" in incidentes_lugar:
+                    incidentes["Homicidio"] += incidentes_lugar["Homicidio"]
+                if "Residencial" in incidentes_lugar:
+                    incidentes["Residencial"] += incidentes_lugar["Residencial"] 
+        return incidentes
 
     def drawGraph(self):
         pos = nx.layout.fruchterman_reingold_layout(self.Safe_Graph)
@@ -91,7 +111,7 @@ class NodosView(QMainWindow):
         source = self.comboOrigin.currentText()  
         target = self.comboDestination.currentText()
         safe_path = nx.dijkstra_path(self.Safe_Graph, source=source, target=target,weight='weight')
-        self.lbSafe.setText(' -> '.join(safe_path))
+        self.lbSafes.setText(' -> '.join(safe_path))
         short_path = nx.dijkstra_path(self.Safe_Graph, source=source, target=target,weight=True)
         self.lbShort.setText(' -> '.join(short_path))
         color_map = nx.get_node_attributes(self.Safe_Graph, "color")

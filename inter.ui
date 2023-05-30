@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>736</width>
-    <height>577</height>
+    <height>550</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -108,7 +108,7 @@ border-radius: 5px;
         </property>
         <attribute name="icon">
          <iconset>
-          <normaloff>../../Discretas/IconosColores/crosshair1.svg</normaloff>../../Discretas/IconosColores/crosshair1.svg</iconset>
+          <normaloff>../IconosColores/crosshair1.svg</normaloff>../IconosColores/crosshair1.svg</iconset>
         </attribute>
         <attribute name="title">
          <string>Punto Salida</string>
@@ -140,7 +140,7 @@ border-radius: 5px;
        <widget class="QWidget" name="tab_Destination">
         <attribute name="icon">
          <iconset>
-          <normaloff>../../Discretas/IconosColores/map-pin.svg</normaloff>../../Discretas/IconosColores/map-pin.svg</iconset>
+          <normaloff>../IconosColores/map-pin.svg</normaloff>../IconosColores/map-pin.svg</iconset>
         </attribute>
         <attribute name="title">
          <string>Destino</string>
@@ -224,7 +224,7 @@ border-width: 0px;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../Discretas/iconos/align-justify.svg</normaloff>../../Discretas/iconos/align-justify.svg</iconset>
+          <normaloff>../iconos/align-justify.svg</normaloff>../iconos/align-justify.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -253,7 +253,7 @@ border-width: 0px;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../Discretas/IconosColores/crosshair1.svg</normaloff>../../Discretas/IconosColores/crosshair1.svg</iconset>
+          <normaloff>../IconosColores/crosshair1.svg</normaloff>../IconosColores/crosshair1.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -317,7 +317,7 @@ border-width: 0px;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../Discretas/IconosColores/more-vertical.svg</normaloff>../../Discretas/IconosColores/more-vertical.svg</iconset>
+          <normaloff>../IconosColores/more-vertical.svg</normaloff>../IconosColores/more-vertical.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -346,7 +346,7 @@ border-width: 0px;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../Discretas/IconosColores/map-pin.svg</normaloff>../../Discretas/IconosColores/map-pin.svg</iconset>
+          <normaloff>../IconosColores/map-pin.svg</normaloff>../IconosColores/map-pin.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -451,7 +451,7 @@ border-width: 0px;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../Discretas/IconosColores/git-branch.svg</normaloff>../../Discretas/IconosColores/git-branch.svg</iconset>
+          <normaloff>../IconosColores/git-branch.svg</normaloff>../IconosColores/git-branch.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -534,32 +534,22 @@ border-radius: 5px;
          </property>
          <attribute name="icon">
           <iconset>
-           <normaloff>../../Discretas/iconos/check.svg</normaloff>../../Discretas/iconos/check.svg</iconset>
+           <normaloff>../iconos/check.svg</normaloff>../iconos/check.svg</iconset>
          </attribute>
          <attribute name="label">
           <string>Ruta Segura</string>
          </attribute>
-         <widget class="QTextEdit" name="lbSafes">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
+         <widget class="QLabel" name="lbSafe">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>10</y>
             <width>201</width>
-            <height>41</height>
+            <height>31</height>
            </rect>
           </property>
-          <property name="inputMethodHints">
-           <set>Qt::ImhMultiLine|Qt::ImhNoEditMenu|Qt::ImhNoTextHandles</set>
-          </property>
-          <property name="html">
-           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </widget>
@@ -614,32 +604,38 @@ border-radius: 5px;
          </property>
          <attribute name="icon">
           <iconset>
-           <normaloff>../../Discretas/IconosColores/git-commit.svg</normaloff>../../Discretas/IconosColores/git-commit.svg</iconset>
+           <normaloff>../IconosColores/git-commit.svg</normaloff>../IconosColores/git-commit.svg</iconset>
          </attribute>
          <attribute name="label">
           <string>Ruta más corta</string>
          </attribute>
-         <widget class="QTextEdit" name="lbShort">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
+         <widget class="QLabel" name="lbShort">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>10</y>
             <width>201</width>
-            <height>41</height>
+            <height>31</height>
            </rect>
           </property>
-          <property name="html">
-           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </widget>
+       </widget>
+       <widget class="QRadioButton" name="radioButton">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>230</y>
+          <width>95</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>RadioButton</string>
+        </property>
        </widget>
       </widget>
       <widget class="QFrame" name="frame">
